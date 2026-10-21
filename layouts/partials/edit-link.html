@@ -1,0 +1,5 @@
+{{- with site.Params.wikiEditURL }}
+{{- if $.File }}
+<p class="wiki-edit" data-pagefind-ignore><a href="{{ . }}/content/{{ $.File.Path }}" rel="edit">Edit this page on GitHub</a></p>
+{{- end }}
+{{- end }}

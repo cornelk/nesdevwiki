@@ -36,6 +36,7 @@ geekdocMenuBundle = true
 geekdocSearch = false
 geekdocBreadcrumb = false
 geekdocNextPrev = false
+wikiEditURL = "https://github.com/cornelk/nesdevwiki/edit/main"
 geekdocPrivacyPolicy = "/wiki/Nesdev_wiki_Privacy_policy/"
 
 [params.geekdocContentLicense]

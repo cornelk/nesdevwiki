@@ -190,3 +190,6 @@
   .gdoc-markdown .infobox,
   .gdoc-markdown .mw-halign-right { float: none; margin: 0 0 1rem; max-width: none; }
 }
+
+/* "Edit this page" link at the end of a page */
+.wiki-edit { margin-top: 2rem; padding-top: 0.5rem; border-top: 1px solid var(--wiki-border); font-size: 90%; }

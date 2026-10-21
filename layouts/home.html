@@ -9,5 +9,6 @@
     <h1>{{ partial "utils/title" . }}</h1>
     {{ if ne .Kind "home" }}{{ partial "page-metadata" . }}{{ end }}
     {{ partial "utils/content" . }}
+    {{ partial "edit-link.html" . }}
   </article>
 {{ end }}

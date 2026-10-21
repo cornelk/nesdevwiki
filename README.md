@@ -32,7 +32,8 @@ make check     # build and verify links, images and anchors
 make test lint
 ```
 
-To edit a page, change its Markdown file in `content/wiki/`. Link to other pages with a relative URL like
+To edit a page, change its Markdown file in `content/wiki/`, or use the "Edit this page on GitHub" link at the bottom of
+each page (`wikiEditURL` in `hugo.toml`). Link to other pages with a relative URL like
 `[mapper](../Mapper/)`. Category membership is set in the front matter:
 
 ```yaml
