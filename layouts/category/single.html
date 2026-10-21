@@ -1,0 +1,37 @@
+{{ define "main" }}
+{{ $url := .Params.url }}
+{{ $subs := slice }}
+{{ $members := slice }}
+{{ range site.RegularPages.ByTitle }}
+  {{ $page := . }}
+  {{ range .Params.wikicategories }}
+    {{ if eq .url $url }}
+      {{ if eq $page.Type "category" }}
+        {{ $subs = $subs | append $page }}
+      {{ else }}
+        {{ $members = $members | append $page }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+  <article class="gdoc-markdown gdoc-markdown__align--left" id="main-content" tabindex="-1">
+    <h1>Category: {{ partial "utils/title" . }}</h1>
+    {{ partial "utils/content" . }}
+    {{ with $subs }}
+    <h2>Subcategories</h2>
+    <ul class="wiki-columns">
+      {{ range . }}<li><a class="gdoc-markdown__link" href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}
+    </ul>
+    {{ end }}
+    <h2>Pages in this category</h2>
+    {{ with $members }}
+    <p class="wiki-count">{{ len . }} {{ cond (eq (len .) 1) "page" "pages" }}</p>
+    <ul class="wiki-columns">
+      {{ range . }}<li><a class="gdoc-markdown__link" href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}
+    </ul>
+    {{ else }}
+    <p>This category has no pages.</p>
+    {{ end }}
+    {{ partial "page-categories.html" . }}
+  </article>
+{{ end }}

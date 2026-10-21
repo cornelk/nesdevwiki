@@ -1,0 +1,56 @@
+---
+title: "NES 2.0 Mapper 274"
+url: "/wiki/NES_2.0_Mapper_274/"
+description: "NES 2.0 Mapper 274 denotes the Cartridge Story series of multicarts from RCM Group. Its UNIF board name is BMC-80013-B."
+wikiPage: "NES_2_0_Mapper_274"
+wikiCategories:
+  - name: "Multicart mappers"
+    url: "/category/Multicart_mappers/"
+---
+
+**NES 2.0 Mapper 274** denotes the *Cartridge Story* series of multicarts from RCM Group. Its UNIF board name is **BMC-80013-B**.
+
+- *Cartridge Story* (72-in-1)
+- *Cartridge Story II* (80-in-1)
+- *Cartridge Story III* (90-in-1, a.k.a. *90-in-1 Hwang Shinwei*)
+
+*Cartridge Story* only contains a single main 2 MiB PRG-ROM chip; *II* and *III* both add an extra PRG-ROM chip.
+
+# Banks {#Banks}
+
+- CPU \$8000-\$BFFF: Switchable inner and outer PRG-ROM bank, main or extra PRG-ROM chip
+- CPU \$C000-\$FFFF: Fixed inner and switchable outer PRG-ROM, main PRG-ROM chip only
+- PPU \$0000-\$1FFF: 8 KiB of CHR-RAM
+
+# Registers {#Registers}
+
+## <span id="Inner_Bank_and_Mirroring_.28.248000-.249FFF.2C_write.29"></span>Inner Bank and Mirroring (\$8000-\$9FFF, write) {#Inner_Bank_and_Mirroring_.28.248000-.249FFF.2C_write.29}
+
+    Mask: $E000
+
+    D~7654 3210
+      ---------
+      ...M BBBB
+         | ++++- Select PRG A17..A14 if CPU A14=0
+         +------ Select nametable mirroring
+                 0: Vertical
+                 1: Horizontal
+
+## <span id="Outer_Bank_and_Chip_Select_.28.24A000-.24FFFF.2C_write.29"></span>Outer Bank and Chip Select (\$A000-\$FFFF, write) {#Outer_Bank_and_Chip_Select_.28.24A000-.24FFFF.2C_write.29}
+
+    Mask: $E000
+
+    D~7654 3210  A~FEDC BA98 7654 3210
+      ---------    -------------------
+      .OOO oooo    1C1. .... .... ....
+       ||| ||||     +------------------ Select PRG-ROM Chip if CPU A14=0
+       ||| ||||                          0: Extra (default)
+       ||| ||||                          1: Main
+       ||| ++++- Select PRG A17..A14 if CPU A14=1
+       +++------ Select PRG A20..A18
+
+Notes:
+
+- Since the extra PRG-ROM chip only has 16 KiB (Cartridge Story II)/64 KiB (Cartridge Story III), PRG A16-A20 are ineffective when C=1. Because this yields a PRG-ROM section of the NES 2.0 file that is not a power of two, emulators must mask them off explicitly.
+- The main PRG-ROM chip is always selected when CPU A14=1.
+- Because C is set to 0 upon reset, the cartridge will boot with the extra PRG-ROM chip mapped, if present.

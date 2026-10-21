@@ -1,0 +1,25 @@
+---
+title: "NES 2.0 Mapper 381"
+url: "/wiki/NES_2.0_Mapper_381/"
+description: "NES 2.0 Mapper 381 denotes the KN-42 PCB, used by the 2-in-1 High Standard Game (BC-019) reset-based multicart containing two (modified) UOROM games, in this case, the two Codemasters \"Bignose\"…"
+wikiPage: "NES_2_0_Mapper_381"
+wikiCategories:
+  - name: "Mappers with CHR RAM"
+    url: "/category/Mappers_with_CHR_RAM/"
+  - name: "Multicart mappers"
+    url: "/category/Multicart_mappers/"
+---
+
+**NES 2.0 Mapper 381** denotes the **KN-42** PCB, used by the *2-in-1 High Standard Game (BC-019)* reset-based multicart containing two (modified) [UOROM](../UxROM/) games, in this case, the two Codemasters "Bignose" titles.
+
+## <span id="Data_Latch_.28.248000-.24FFFF.2C_write.29"></span>Data Latch (\$8000-\$FFFF, write) {#Data_Latch_.28.248000-.24FFFF.2C_write.29}
+
+    Mask: $8000
+
+    D~7654 3210
+      ---------
+      ...b .aaa
+         |  +++- PRG A15..A17
+         +------ PRG A14
+
+The actual 16 KiB bank number is therefore *aaab*. PRG A14..A17 are forced to \$F if CPU A14=1, just like UOROM. PRG A18 is flipped on each reset cycle, which is detected through interruption of the M2 signal. The data latch exhibits bus conflicts.

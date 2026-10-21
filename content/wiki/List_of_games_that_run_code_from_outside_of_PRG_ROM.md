@@ -1,0 +1,168 @@
+---
+title: "List of games that run code from outside of PRG-ROM"
+url: "/wiki/List_of_games_that_run_code_from_outside_of_PRG-ROM/"
+description: "This is an incomplete list of games that execute code from CPU addresses $0000 to $7fff, i.e., from outside of PRG-ROM."
+wikiPage: "List_of_games_that_run_code_from_outside_of_PRG_ROM"
+wikiCategories:
+  - name: "Lists of games"
+    url: "/category/Lists_of_games/"
+---
+
+This is an incomplete list of games that execute code from CPU addresses `$0000` to `$7fff`, i.e., from outside of PRG-ROM.
+
+- *The 3-D Battles of WorldRunner*
+- *Action 52*
+- *Action 53* (all volumes)
+- *The Addams Family*
+- *The Adventures of Gilligan's Island*
+- *The Adventures of Rad Gravity*
+- *Arch Rivals*
+- *Athletic World*
+- *Attack of the Killer Tomatoes*
+- *Barbie*
+- *The Bard's Tale*
+- *Batman: Return of the Joker* (from PRG RAM)
+- *Battletoads*
+- *Beetlejuice*
+- *The Blue Marlin*
+- *A Boy and His Blob: Trouble on Blobolonia*
+- *Burai Fighter*
+- *Cabal*
+- *California Games*
+- *Captain Skyhawk*
+- *Castelian*
+- *Chessmaster*
+- *Conflict*
+- *Cool World*
+- *Cowboy Kid*
+- *Crash 'n the Boys: Street Challenge*
+- *Crystalis*
+- *Dance Aerobics*
+- *Deadly Towers*
+- *Death Race*
+- *Destiny of an Emperor*
+- *Digger T. Rock: Legend of the Lost City*
+- *Disney's The Jungle Book*
+- *Double Dragon*
+- *Double Dragon II: The Revenge*
+- *Double Dragon III: The Sacred Stones*
+- *Dragon Warrior*
+- *Dragon Warrior III*
+- *Dragon Warrior IV*
+- *Dudes with Attitude*
+- *Elevator Action*
+- *Family Jockey*
+- *Fantasy Zone*
+- *Ferrari Grand Prix Challenge*
+- *Final Combat*
+- *Fleet Commander*
+- *The Flintstones: The Rescue of Dino & Hoppy*
+- *The Flintstones: Surprise at Dinosaur Peak*
+- *Flying Warriors*
+- *Fun House*
+- *G.I. Joe: A Real American Hero*
+- *G.I. Joe: The Atlantis Factor*
+- The *Game Genie* ROM (from zero page)
+- *Gauntlet*
+- *Goal!*
+- *Golgo 13: Top Secret Episode*
+- *The Great Wall*
+- *Guerrilla War*
+- *Haunted: Halloween '85*
+- *Hell Fighter*
+- *High Speed*
+- *Home Alone 2: Lost in New York*
+- *Hydlide*
+- *Impossible Mission II*
+- *The Incredible Crash Dummies*
+- *Indiana Jones and the Last Crusade*
+- *Indiana Jones and the Temple of Doom*
+- *Iron Tank*
+- *Ironsword: Wizards & Warriors II*
+- *The Jetsons: Cogswell's Caper!*
+- *Kabuki Quantum Fighter*
+- *Kickle Cubicle*
+- *Kid Icarus*
+- *King Neptune's Adventure*
+- *King of Kings: The Early Years*
+- *King's Quest V: Absence Makes the Heart Go Yonder!*
+- *Kirby's Adventure*
+- *Kiwi Kraze* (from main RAM)
+- *The Krion Conquest*
+- *The Legend of Zelda*
+- *Lemmings*
+- *The Lone Ranger*
+- *M.C. Kids*
+- *Mach Rider*
+- *Magic Johnson's Fast Break*
+- *Major League Baseball*
+- *Maniac Mansion*
+- *Mappy-Land*
+- *Michael Andretti's World GP*
+- *Micro Machines*
+- *Might and Magic Book One: The Secret of the Inner Sanctum*
+- *Mission: Impossible*
+- *Monster Party*
+- *Monster Truck Rally*
+- *NARC*
+- *Nigel Mansell's World Championship Racing*
+- *A Nightmare on Elm Street*
+- *Nintendo World Cup*
+- *Overlord*
+- *Pictionary*
+- *Pinball Quest*
+- *Pirates!*
+- *Portopia Renzoku Satsujin Jiken*
+- *Qix*
+- *Quattro Adventure*
+- *Quattro Arcade*
+- *Quattro Sports*
+- *River City Ransom*
+- *Rocket Ranger*
+- *Section Z*
+- *Sesame Street: 1-2-3*
+- *Sesame Street: A-B-C*
+- *Silver Surfer*
+- *The Simpsons: Bart vs. the Space Mutants*
+- *The Simpsons: Bart vs. the World*
+- *The Simpsons: Bartman Meets Radioactive Man*
+- *Skate or Die 2: The Search for Double Trouble*
+- *Skull & Crossbones*
+- *Sky Shark*
+- *Slalom* (from zero page)
+- *Snake Rattle 'n' Roll*
+- *Snow Brothers*
+- *Solstice: The Quest for the Staff of Demnos*
+- *Spot: The Video Game*
+- *Stadium Events* / *World Class Track Meet*
+- *Street Cop*
+- *Strike Wolf*
+- *Super Dodge Ball*
+- *Super Jeopardy!*
+- *Super Spike V'Ball*
+- *Super Spy Hunter*
+- *Super Team Games*
+- *Target: Renegade*
+- *Tecmo World Wrestling*
+- *Teenage Mutant Ninja Turtles II: The Arcade Game*
+- *Teenage Mutant Ninja Turtles III: The Manhattan Project*
+- *To the Earth*
+- *Tom and Jerry*
+- *Top Gun: The Second Mission*
+- *Total Recall*
+- *Treasure Master*
+- *Trolls on Treasure Island*
+- *The Untouchables*
+- *Videomation*
+- *Wally Bear and the NO! Gang*
+- *Wheel of Fortune: Featuring Vanna White*
+- *Winter Games*
+- *Wizards & Warriors*
+- *Wizards & Warriors III: Kuros: Visions of Power*
+- *Wolverine*
+- *World Champ*
+- *World Games*
+
+## See also {#See_also}
+
+- [Tricky-to-emulate games](../Tricky-to-emulate_games/)

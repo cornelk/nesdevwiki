@@ -1,0 +1,66 @@
+---
+title: "INES Mapper 115"
+url: "/wiki/INES_Mapper_115/"
+description: "iNES Mapper 115 denotes the 卡聖 (Kǎshèng) SFC-02B/-03/-004 boards, bearing an MMC3-clone with a 256 KiB outer CHR-ROM bank register and an NROM-like PRG-ROM register that can override the MMC3…"
+wikiPage: "INES_Mapper_115"
+wikiCategories:
+  - name: "INES Mappers"
+    url: "/category/INES_Mappers/"
+  - name: "MMC3-like mappers"
+    url: "/category/MMC3-like_mappers/"
+---
+
+**iNES Mapper 115** denotes the 卡聖 (Kǎshèng) SFC-02B/-03/-004 boards, bearing an [MMC3](../MMC3/)-clone with a 256 KiB outer CHR-ROM bank register and an NROM-like PRG-ROM register that can override the MMC3 clone's PRG-ROM bank. Used by:
+
+- *A.V. 究極麻將 II* (*A.V. Jiūjí Májiàng II*, Kǎshèng re-release, originally released by 哥德 (Gouder) on [INES Mapper 116](../INES_Mapper_116/))
+- *包青天* (*Bāo Qīngtiān*, Justice Pao)
+- *餓狼伝説 Special* (*Garō Densetsu Special*, Kǎshèng re-release, originally released by 哥德 (Gouder) on [INES Mapper 116](../INES_Mapper_116/))
+- *雷電 II - Thunderbolt Fighting Plane* (*Léidiàn II*)
+- *三國春秋: 四川省* (*Sānguó Chūnqiū: Sìchuān Shěng*)
+- *幽☆遊☆白書 Final* (*Yū Yū Hakusho Final*, both Chinese and English versions)
+- *1997 Super HiK 16-in-1* multicart
+
+# Registers {#Registers}
+
+## <span id="Mode.2FNROM_Bank_Register_.28.246000.2C_write.29"></span>Mode/NROM Bank Register (\$6000, write) {#Mode.2FNROM_Bank_Register_.28.246000.2C_write.29}
+
+    Mask: $E003
+
+    D~[MPN. PPPp]
+       |||  ++++- If M=1: PRG A17..A14
+       ||+------- 0: If M=1: PRG A14=p (NROM-128)
+       ||         1: If M=1: PRG A14=CPU 14 (NROM-256)
+       |+-------- PRG A18
+       +--------- 0: MMC3 mode, PRG A17..A14=MMC3 PRG A17..A14
+                  1: NROM mode, PRG A17..A14=PPPp and "N" bit applies
+    Power-on value: $00
+
+## <span id="Outer_CHR-ROM_Bank_Register_.28.246001.2C_write.29"></span>Outer CHR-ROM Bank Register (\$6001, write) {#Outer_CHR-ROM_Bank_Register_.28.246001.2C_write.29}
+
+    Mask: $E003
+
+    D~[.... ...C]
+               +- CHR A18
+    Power-on value: $00
+
+## <span id="Solder_Pad_Register_.28.246002.2C_read.29"></span>Solder Pad Register (\$6002, read) {#Solder_Pad_Register_.28.246002.2C_read.29}
+
+    Mask: $E003
+
+    D~[.... .VVV]
+             +++- Solder Pad value
+
+## <span id="MMC3-compatible_registers_.28.248000-.24FFFF.29"></span>MMC3-compatible registers (\$8000-\$FFFF) {#MMC3-compatible_registers_.28.248000-.24FFFF.29}
+
+Mask: \$E001, see [MMC3](../MMC3/).
+
+# Notes {#Notes}
+
+- Unlike many similar mappers, the \$600x registers are not connected to the MMC3 clone's WRAM interface and thus function regardless of whether WRAM is enabled or not.
+- IRQ behavior resembles "Sharp" behavior, i.e. a latch value of zero causes an IRQ on every scanline, on which the Chinese version of 幽☆遊☆白書 Final (Yuu Yuu Hakusho Final) depends.
+
+# Similar Mappers {#Similar_Mappers}
+
+- [INES Mapper 114](../INES_Mapper_114/) has the same \$6000 and \$6001 registers, but additionally scrambles MMC3 register addresses and indices. Also, Mapper 114's IRQ behavior resembles "NEC" behavior, i.e. a latch value of zero disables IRQ.
+- [INES Mapper 187](../INES_Mapper_187/) has a similar NROM override register, placed at \$5000
+- [INES Mapper 248](../INES_Mapper_248/) is a duplicate of Mapper 115.

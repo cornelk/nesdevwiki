@@ -1,0 +1,14 @@
+---
+more:
+  - name: NESdev BBS
+    ref: "https://forums.nesdev.org/"
+    external: true
+    icon: "gdoc_link"
+  - name: NESdev Discord
+    ref: "https://discord.gg/JSG4kuF8EK"
+    external: true
+    icon: "gdoc_link"
+  - name: SNESdev wiki
+    ref: "https://snes.nesdev.org/wiki"
+    external: true
+    icon: "gdoc_link"

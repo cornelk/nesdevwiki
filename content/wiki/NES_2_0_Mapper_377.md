@@ -1,0 +1,8 @@
+---
+title: "NES 2.0 Mapper 377"
+url: "/wiki/NES_2.0_Mapper_377/"
+description: "NES 2.0 Mapper 377 is used for the 1998 Super Game 8-in-1 (JY-111) pirate multicart. It works similarly to Mapper 267 except it has an outer 256KiB PRG-ROM bank."
+wikiPage: "NES_2_0_Mapper_377"
+---
+
+NES 2.0 Mapper 377 is used for the *1998 Super Game 8-in-1 (JY-111)* pirate multicart. It works similarly to Mapper 267 except it has an outer 256KiB PRG-ROM bank.

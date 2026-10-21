@@ -1,0 +1,43 @@
+baseURL = "https://nesdev.cornel.contact/"
+title = "NESdev Wiki"
+locale = "en"
+defaultContentLanguage = "en"
+theme = "hugo-geekdoc"
+enableRobotsTXT = true
+timeZone = "UTC"
+
+# The wiki has no taxonomies: categories are rendered from the wikiCategories front matter.
+disableKinds = ["taxonomy", "term"]
+
+[outputs]
+home = ["html"]
+section = ["html"]
+page = ["html"]
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[markup.highlight]
+noClasses = false
+
+[markup.tableOfContents]
+startLevel = 2
+endLevel = 3
+
+[sitemap]
+changefreq = "monthly"
+priority = 0.5
+
+[params]
+description = "The NES development wiki: hardware, mappers, programming and tools for the Nintendo Entertainment System and Famicom."
+
+# Geekdoc theme: the sidebar comes from data/menu/*.yaml, search is done by Pagefind.
+geekdocMenuBundle = true
+geekdocSearch = false
+geekdocBreadcrumb = false
+geekdocNextPrev = false
+geekdocPrivacyPolicy = "/wiki/Nesdev_wiki_Privacy_policy/"
+
+[params.geekdocContentLicense]
+name = "Public domain"
+link = "/wiki/Nesdev_wiki_General_disclaimer/"

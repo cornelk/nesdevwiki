@@ -1,0 +1,9 @@
+.idea
+.vscode
+.DS_Store
+
+*.zip
+
+public/
+resources/
+.hugo_build.lock

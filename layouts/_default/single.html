@@ -1,0 +1,15 @@
+{{ define "main" }}
+  {{ partial "page-header" . }}
+
+  <article class="gdoc-markdown gdoc-markdown__align--left" id="main-content" tabindex="-1">
+    <h1>{{ partial "utils/title" . }}</h1>
+    {{ if and (gt .WordCount 600) .TableOfContents }}
+    <div class="gdoc-toc gdoc-toc__level--3" data-pagefind-ignore>
+      {{ .TableOfContents }}
+      <hr />
+    </div>
+    {{ end }}
+    {{ partial "utils/content" . }}
+    <div data-pagefind-ignore>{{ partial "page-categories.html" . }}</div>
+  </article>
+{{ end }}

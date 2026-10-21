@@ -1,0 +1,8 @@
+---
+title: "NES 2.0 Mapper 440"
+url: "/wiki/NES_2.0_Mapper_440/"
+description: "NES 2.0 Mapper 440 denotes the built-in chipset of the Dongda Sonic REC-9388 educational computer."
+wikiPage: "NES_2_0_Mapper_440"
+---
+
+**NES 2.0 Mapper 440** denotes the built-in chipset of the Dongda Sonic REC-9388 educational computer.

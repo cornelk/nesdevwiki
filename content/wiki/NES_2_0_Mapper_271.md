@@ -1,0 +1,26 @@
+---
+title: "NES 2.0 Mapper 271"
+url: "/wiki/NES_2.0_Mapper_271/"
+description: "NES 2.0 Mapper 271 is used for the TXC 4-in-1 multicart (MGC-026). It's basically an oversize GNROM with one of the PRG bits also serving as a mirroring control. Its UNIF board name is BMC-22026."
+wikiPage: "NES_2_0_Mapper_271"
+wikiCategories:
+  - name: "GNROM-like mappers"
+    url: "/category/GNROM-like_mappers/"
+  - name: "Multicart mappers"
+    url: "/category/Multicart_mappers/"
+---
+
+NES 2.0 Mapper 271 is used for the TXC 4-in-1 multicart (MGC-026). It's basically an oversize [GNROM](../GxROM/) with one of the PRG bits also serving as a mirroring control. Its UNIF board name is **BMC-22026**.
+
+## Data latch {#Data_latch}
+
+    Mask: $8000
+
+    Bit 7654 3210
+        ---------
+        ..PP CCCC
+          || ++++- Select 8 KiB CHR-ROM bank at PPU $0000-$1FFF
+          ++------ Select 32 KiB PRG-ROM bank at CPU $8000-$FFFF
+          +------- Select nametable mirroring
+                   0: Horizontal
+                   1: Vertical

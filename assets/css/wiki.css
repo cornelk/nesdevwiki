@@ -1,0 +1,192 @@
+/* Colors and type of the original NESdev wiki (MonoBook skin), on top of the Geekdoc theme. */
+:root {
+  --header-font-family: Arial, Helvetica, sans-serif;
+  --body-font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Light palette of the old wiki. The dark mode of the theme is left as it is. */
+:root:not([color-theme="dark"]) {
+  --body-background: #fff;
+  --body-font-color: #000;
+  --link-color: #002bb8;
+  --link-color-visited: #5a3696;
+  --accent-color: #aaa;
+  --accent-color-lite: #f8f9fa;
+  --header-background: linear-gradient(#e6e6e6, #f9f9f9);
+  --header-font-color: #000;
+  --footer-background: #fff;
+  --footer-font-color: #000;
+  --footer-link-color: #002bb8;
+  --footer-link-color-visited: #5a3696;
+  --mark-color: #fabd23;
+  --code-background: #f8f9fa;
+  --code-accent-color: #eee;
+  --wiki-border: #aaa;
+  --wiki-soft: #f8f9fa;
+  --wiki-head: #eaecf0;
+  --wiki-external: #36b;
+  --wiki-external-visited: #636;
+  --wiki-selected: #fabd23;
+  --wiki-portal-bg: #f5faff;
+  --wiki-portal-border: #cedff2;
+}
+:root[color-theme="dark"] {
+  --wiki-head: color-mix(in srgb, var(--body-font-color) 12%, var(--body-background));
+  --wiki-external: var(--link-color);
+  --wiki-external-visited: var(--link-color-visited);
+  --wiki-selected: #fabd23;
+  --wiki-portal-bg: color-mix(in srgb, #4486dd 14%, var(--body-background));
+  --wiki-portal-border: color-mix(in srgb, #4486dd 40%, var(--body-background));
+}
+
+.gdoc-header { border-bottom: 1px solid var(--wiki-border); }
+.gdoc-header .gdoc-brand__img, .gdoc-header img { height: 2.6rem; width: auto; }
+.gdoc-footer { border-top: 1px solid var(--wiki-border); }
+/* Footer on one line: credits, license and "Back to top" side by side (wraps on narrow screens) */
+.gdoc-footer nav > div:first-child { display: flex; flex-wrap: wrap; align-items: center; column-gap: 1.5rem; flex: 1 1 auto; }
+.gdoc-footer nav > div:last-child { flex: 0 0 auto; }
+
+/* Headings like MonoBook: black, ruled h1 and h2 */
+.gdoc-markdown h1, .gdoc-markdown h2, .gdoc-markdown h3, .gdoc-markdown h4 { color: inherit; }
+.gdoc-markdown h1 { font-weight: normal; border-bottom: 1px solid var(--wiki-border); padding-bottom: 0.17em; }
+.gdoc-markdown h2 { font-weight: bold; border-bottom: 1px solid var(--wiki-border); padding-bottom: 0.17em; }
+.gdoc-markdown h3, .gdoc-markdown h4 { font-weight: bold; }
+/* Page title starts at the height of the search box in the sidebar */
+.gdoc-markdown > h1:first-child { margin-top: -0.125em; line-height: 1; margin-bottom: 0.9em; }
+
+/* Links: no underline until hovered, external ones are lighter blue, like on the old wiki */
+.gdoc-markdown a, .gdoc-markdown__link, .gdoc-markdown__link--code { text-decoration: none; }
+.gdoc-markdown a:hover, .gdoc-markdown__link:hover { text-decoration: underline; }
+.gdoc-markdown a[href^="http"] { color: var(--wiki-external); }
+.gdoc-markdown a[href^="http"]:visited { color: var(--wiki-external-visited); }
+
+/* Sidebar boxes with a thin grey border, selected entry marked yellow like the selected tab */
+.gdoc-nav--main, .gdoc-nav--more {
+  background: var(--body-background);
+  border: 1px solid var(--wiki-border);
+  padding: 0 0.8rem 0.5rem;
+  margin-bottom: 1rem;
+}
+.gdoc-nav h2 { font-size: 0.9rem; font-weight: normal; margin: 0.4rem 0; }
+.gdoc-nav__entry { color: var(--link-color); font-weight: normal; }
+.gdoc-nav__entry.is-active { color: var(--body-font-color); font-weight: bold; box-shadow: inset 0 -2px 0 var(--wiki-selected); }
+.gdoc-search__input { border: 1px solid var(--wiki-border); background: var(--body-background); }
+
+/* Tables of the old wiki: light grey cells, grey grid, centered headers */
+.gdoc-markdown table:not(.lntable):not(.highlight) {
+  background: var(--wiki-soft);
+  border-collapse: collapse;
+  border: 1px solid var(--wiki-border);
+}
+.gdoc-markdown table:not(.lntable):not(.highlight) thead { border-bottom: 0; }
+.gdoc-markdown table:not(.lntable):not(.highlight) tr { border-bottom: 0; }
+.gdoc-markdown table:not(.lntable):not(.highlight) tr:nth-child(2n) { background: none; }
+.gdoc-markdown table:not(.lntable):not(.highlight) th,
+.gdoc-markdown table:not(.lntable):not(.highlight) td { border: 1px solid var(--wiki-border); padding: 0.2em 0.4em; }
+.gdoc-markdown table:not(.lntable):not(.highlight) th { background: var(--wiki-head); text-align: center; }
+
+/* Infobox tables stay free of the grid */
+.gdoc-markdown .infobox table:not(.lntable):not(.highlight) { background: none; border: 0; }
+.gdoc-markdown .infobox table:not(.lntable):not(.highlight) th,
+.gdoc-markdown .infobox table:not(.lntable):not(.highlight) td { border: 0; background: none; text-align: left; }
+.gdoc-markdown .infobox table:not(.lntable):not(.highlight) tr { border-bottom: 1px solid var(--wiki-border); }
+.gdoc-markdown .infobox table:not(.lntable):not(.highlight) tr:last-child { border-bottom: 0; }
+
+/* Table of contents box of the old wiki */
+.gdoc-toc {
+  display: table;
+  background: var(--wiki-soft);
+  border: 1px solid var(--wiki-border);
+  padding: 0.4rem 1rem;
+  font-size: 95%;
+}
+.gdoc-toc hr { display: none; }
+
+/* Home page: the portal boxes are light blue with a blue border */
+.wiki-home table { background: none; border: 0; }
+.wiki-home table td {
+  background: var(--wiki-portal-bg);
+  border: 1px solid var(--wiki-portal-border);
+  padding: 0.2em 0.6em;
+  text-align: center;
+  vertical-align: top;
+  min-height: 10em;
+}
+
+/* Shared by light and dark: status colors for table cells */
+:root {
+  --wiki-yes: color-mix(in srgb, #3bad3b 28%, var(--body-background));
+  --wiki-no: color-mix(in srgb, #d84747 28%, var(--body-background));
+  --wiki-blue: color-mix(in srgb, #4486dd 28%, var(--body-background));
+}
+:root[color-theme="dark"] {
+  --wiki-border: color-mix(in srgb, var(--body-font-color) 30%, var(--body-background));
+  --wiki-soft: color-mix(in srgb, var(--body-font-color) 7%, var(--body-background));
+}
+
+/* Tables that the importer kept as HTML (colspans, classes) */
+.gdoc-markdown table.wikitable,
+.gdoc-markdown table.tabular {
+  display: block;
+  overflow-x: auto;
+  max-width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+.gdoc-markdown table.wikitable th,
+.gdoc-markdown table.wikitable td,
+.gdoc-markdown table.tabular th,
+.gdoc-markdown table.tabular td {
+  border: 1px solid var(--wiki-border);
+  padding: 0.3rem 0.6rem;
+  vertical-align: top;
+}
+.gdoc-markdown table.wikitable th,
+.gdoc-markdown table.tabular th { background: var(--wiki-soft); text-align: left; }
+
+.table-yes { background: var(--wiki-yes) !important; }
+.table-no { background: var(--wiki-no) !important; }
+.table-unknown, .unknown { background: var(--wiki-soft) !important; opacity: 0.85; }
+.table-BlueCell { background: var(--wiki-blue) !important; }
+.table-RedCell { background: var(--wiki-no) !important; }
+.table-GreenCell { background: var(--wiki-yes) !important; }
+
+/* Infoboxes float to the right like on the old wiki */
+.gdoc-markdown .infobox {
+  float: right;
+  clear: right;
+  margin: 0 0 1rem 1.5rem;
+  max-width: 20rem;
+  font-size: 0.9rem;
+  border: 1px solid var(--wiki-border);
+  background: var(--wiki-soft);
+  padding: 0.5rem;
+}
+.gdoc-markdown .infobox table { display: table; width: 100%; margin: 0.4rem 0 0; border: 0; }
+.gdoc-markdown .infobox th,
+.gdoc-markdown .infobox td { border: 0; padding: 0.15rem 0.4rem; vertical-align: top; background: none; }
+.gdoc-markdown .mw-halign-right { float: right; clear: right; margin: 0 0 1rem 1.5rem; }
+.gdoc-markdown .mw-halign-center { display: block; margin: 0 auto; text-align: center; }
+.gdoc-markdown .small { font-size: 0.85em; }
+
+/* Page footer elements and listings */
+.wiki-categories {
+  margin-top: 2.5rem;
+  padding: 0.6rem 0.9rem;
+  background: var(--wiki-soft);
+  border: 1px solid var(--wiki-border);
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+}
+.wiki-categories ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 0.9rem; flex-wrap: wrap; }
+.wiki-columns { columns: 16rem; column-gap: 2rem; padding-left: 1.2rem; }
+.wiki-columns li { break-inside: avoid; margin-bottom: 0.15rem; }
+.wiki-count { opacity: 0.7; }
+.wiki-letters a { margin-right: 0.6rem; font-weight: 600; }
+
+@media (max-width: 800px) {
+  .gdoc-markdown .infobox,
+  .gdoc-markdown .mw-halign-right { float: none; margin: 0 0 1rem; max-width: none; }
+}

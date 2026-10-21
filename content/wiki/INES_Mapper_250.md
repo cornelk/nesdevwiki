@@ -1,0 +1,30 @@
+---
+title: "INES Mapper 250"
+url: "/wiki/INES_Mapper_250/"
+description: "INES Mapper 250 is a mapper by Nitra, used for pirate games such as Time Diver Avenger and the Queen Bee V."
+wikiPage: "INES_Mapper_250"
+wikiCategories:
+  - name: "INES Mappers"
+    url: "/category/INES_Mappers/"
+  - name: "MMC3-like mappers"
+    url: "/category/MMC3-like_mappers/"
+---
+
+INES Mapper 250 is a mapper by Nitra, used for pirate games such as [Time Diver Avenger](http://community.fandom.com/wiki/c:bootleggames:Time_Diver:_Avenger) and the Queen Bee V.
+
+Hardware consists of regular MMC3 chip connected in different way:
+
+- A10 instead of A0 is used to determine which register to write to (i.e. the registers are at \$8000, \$8400, \$A000, \$A400, \$C000, \$C400, \$E000, \$E400 and their associated
+- A7..A0 is used instead of D7..D0: the value written to each register is the lower byte of the address (i.e. address AND \$00FF), data value is discarded
+
+<!-- -->
+
+- Queen Bee V contains also 74153 mux which controls PRG-A13 resulting in the following change:
+
+<!-- -->
+
+    below
+    $8000 $8000 $a000 $c000 $e000
+       0   MMC3  MMC3   0     1
+
+Source: [\[1\]](http://krzysiobal.com/carts/?action=search&mpr=250)

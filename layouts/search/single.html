@@ -1,0 +1,20 @@
+{{ define "main" }}
+  <article class="gdoc-markdown gdoc-markdown__align--left" id="main-content" tabindex="-1">
+    <h1>{{ partial "utils/title" . }}</h1>
+    <div id="search"></div>
+    <noscript>Search needs JavaScript.</noscript>
+  </article>
+  <link href="{{ "/pagefind/pagefind-ui.css" | relURL }}" rel="stylesheet">
+  <script src="{{ "/pagefind/pagefind-ui.js" | relURL }}"></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", function () {
+      if (typeof PagefindUI === "undefined") {
+        document.getElementById("search").textContent = "The search index is only available in built sites (make build).";
+        return;
+      }
+      var ui = new PagefindUI({ element: "#search", showSubResults: true, showImages: false, autofocus: true });
+      var q = new URLSearchParams(location.search).get("q");
+      if (q) { ui.triggerSearch(q); }
+    });
+  </script>
+{{ end }}

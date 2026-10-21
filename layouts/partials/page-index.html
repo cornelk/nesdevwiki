@@ -1,0 +1,24 @@
+{{/* A-Z index of the given pages (ByTitle sorted) */}}
+{{ $pages := . }}
+<p class="wiki-count">{{ len $pages }} pages</p>
+{{ $letters := split "# A B C D E F G H I J K L M N O P Q R S T U V W X Y Z" " " }}
+<p class="wiki-letters">
+  {{ range $letters }}<a href="#letter-{{ . | replace "#" "0" }}">{{ . }}</a>{{ end }}
+</p>
+{{ range $letters }}
+  {{ $letter := . }}
+  {{ $group := slice }}
+  {{ range $pages }}
+    {{ $first := upper (substr .Title 0 1) }}
+    {{ $isLetter := findRE "^[A-Z]$" $first }}
+    {{ if or (eq $first $letter) (and (eq $letter "#") (not $isLetter)) }}
+      {{ $group = $group | append . }}
+    {{ end }}
+  {{ end }}
+  {{ with $group }}
+  <h2 id="letter-{{ $letter | replace "#" "0" }}">{{ $letter }}</h2>
+  <ul class="wiki-columns">
+    {{ range . }}<li><a class="gdoc-markdown__link" href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}
+  </ul>
+  {{ end }}
+{{ end }}

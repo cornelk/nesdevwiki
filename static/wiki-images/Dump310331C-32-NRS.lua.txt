@@ -1,0 +1,108 @@
+-- create the module's table
+local dump32_310331C = {}
+
+-- import required modules
+local dict = require "scripts.app.dict"
+local nes = require "scripts.app.nes"
+local dump = require "scripts.app.dump"
+local flash = require "scripts.app.flash"
+local time = require "scripts.app.time"
+local files = require "scripts.app.files"
+local swim = require "scripts.app.swim"
+local buffers = require "scripts.app.buffers"
+
+-- local functions
+local function create_header( file, prgKB, chrKB )
+	-- Mapper : 354 ; Mirroring : 0 (Horizontal)
+
+	nes.write_header( file, prgKB, 0, 354, 0)
+end
+
+--dump the PRG ROM
+local function dump_prgrom( file, rom_size_KB, debug )
+
+	local KB_per_read = 32
+	local num_reads = rom_size_KB / KB_per_read
+	local read_count = 0
+	local addr_base = 0x08	-- $8000
+
+	while ( read_count < num_reads ) do
+
+		if debug then print( "dump PRG part ", read_count, " of ", num_reads) end
+
+		-- hardware: A0-A2, D0-D2, D7 all go to PAL, which then generates A13-A16
+
+		-- A3 controls whether CHR RAM is writeable
+		-- D6 specifies H/V mirroring control
+		-- A4,A12 are A20,A21
+		-- D3-D5 are A17-A19
+		local datapart = (read_count & 0x1F) << 1;
+		local addrpart = 0xE000 | ((read_count >> 1) & 0x10) | ((read_count << 6) & 0x1000);
+
+		-- pause of 1 second to take care about the chips
+		local time=os.clock()+1
+		while time>os.clock()
+			do
+			end
+
+		--select desired bank(s) to dump
+		dict.nes("NES_CPU_WR", addrpart, datapart)	--32KB @ CPU $8000
+
+		dump.dumptofile( file, KB_per_read, addr_base, "NESCPU_4KB", false )
+
+		read_count = read_count + 1
+	end
+end
+
+--Cart should be in reset state upon calling this function
+--this function processes all user requests for this specific board/mapper
+--local function process( test, read, erase, program, verify, dumpfile, flashfile, verifyfile)
+local function process(process_opts, console_opts)
+	local test = process_opts["test"]
+	local read = process_opts["read"]
+	local erase = process_opts["erase"]
+	local program = process_opts["program"]
+	local verify = process_opts["verify"]
+	local dumpfile = process_opts["dump_filename"]
+	local flashfile = process_opts["flash_filename"]
+	local verifyfile = process_opts["verify_filename"]
+
+	local rv = nil
+	local file
+	local prg_size = console_opts["prg_rom_size_kb"]
+	local chr_size = console_opts["chr_rom_size_kb"]
+	local wram_size = console_opts["wram_size_kb"]
+
+--initialize device i/o for NES
+	dict.io("IO_RESET")
+	dict.io("NES_INIT")
+
+print("\nRunning dump310331C-32-NRS.lua")
+
+--dump the cart to dumpfile
+	if read then
+		print("\nDumping PRG-ROM...")
+		file = assert(io.open(dumpfile, "wb"))
+
+		--create header: pass open & empty file & rom sizes
+		create_header(file, prg_size, chr_size)
+
+		--TODO find bank table to avoid bus conflicts!
+		--dump cart into file
+		time.start()
+		dump_prgrom(file, prg_size, false)
+		time.report(prg_size)
+
+		--close file
+		assert(file:close())
+		print("DONE Dumping PRG-ROM")
+	end
+
+	dict.io("IO_RESET")
+end
+
+-- functions other modules are able to call
+dump32_310331C.process = process
+
+-- return the module's table
+return dump32_310331C

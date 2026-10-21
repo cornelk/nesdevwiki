@@ -1,0 +1,8 @@
+{{ with .Params.wikicategories }}
+<nav class="wiki-categories" aria-label="Categories">
+  <span>Categories:</span>
+  <ul>
+    {{ range . }}<li><a class="gdoc-markdown__link" href="{{ .url | relURL }}">{{ .name }}</a></li>{{ end }}
+  </ul>
+</nav>
+{{ end }}
