@@ -1,0 +1,27 @@
+<footer class="gdoc-footer wiki-footer">
+  <nav class="container wiki-footer__inner" aria-label="Footer">
+    <a class="wiki-footer__item wiki-footer__brand" href="{{ "/" | relURL }}">{{ .Site.Title }}</a>
+    <span class="wiki-footer__item">Hosted on <a class="gdoc-footer__link" href="https://pages.cloudflare.com/">Cloudflare Pages</a></span>
+    <span class="wiki-footer__item">{{ i18n "footer_build_with" | safeHTML }}</span>
+    {{ with .Site.Params.geekdocLegalNotice }}
+      <a href="{{ . | relURL }}" class="gdoc-footer__link wiki-footer__item">{{ i18n "footer_legal_notice" }}</a>
+    {{ end }}
+    {{ with .Site.Params.geekdocPrivacyPolicy }}
+      <a href="{{ . | relURL }}" class="gdoc-footer__link wiki-footer__item">{{ i18n "footer_privacy_policy" }}</a>
+    {{ end }}
+    {{ with .Site.Params.geekdocContentLicense }}
+      <span class="wiki-footer__item">
+        {{ i18n "footer_content_license_prefix" }}
+        <a href="{{ .link }}" class="gdoc-footer__link">{{ .name }}</a>
+      </span>
+    {{ end }}
+    {{ if (default true .Site.Params.geekdocBackToTop) }}
+      <a class="gdoc-footer__link wiki-footer__item wiki-footer__top-link" href="#" aria-label="{{ i18n "nav_top" }}">
+        <svg class="gdoc-icon gdoc_keyboard_arrow_up" aria-hidden="true">
+          <use xlink:href="#gdoc_keyboard_arrow_up"></use>
+        </svg>
+        <span>{{ i18n "nav_top" }}</span>
+      </a>
+    {{ end }}
+  </nav>
+</footer>

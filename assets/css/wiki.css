@@ -26,7 +26,7 @@
   --wiki-head: #eaecf0;
   --wiki-external: #36b;
   --wiki-external-visited: #636;
-  --wiki-selected: #fabd23;
+  --wiki-selected: var(--link-color);
   --wiki-portal-bg: #f5faff;
   --wiki-portal-border: #cedff2;
 }
@@ -34,7 +34,7 @@
   --wiki-head: color-mix(in srgb, var(--body-font-color) 12%, var(--body-background));
   --wiki-external: var(--link-color);
   --wiki-external-visited: var(--link-color-visited);
-  --wiki-selected: #fabd23;
+  --wiki-selected: var(--link-color);
   --wiki-portal-bg: color-mix(in srgb, #4486dd 14%, var(--body-background));
   --wiki-portal-border: color-mix(in srgb, #4486dd 40%, var(--body-background));
 }
@@ -42,9 +42,12 @@
 .gdoc-header { border-bottom: 1px solid var(--wiki-border); }
 .gdoc-header .gdoc-brand__img, .gdoc-header img { height: 2.6rem; width: auto; }
 .gdoc-footer { border-top: 1px solid var(--wiki-border); }
-/* Footer on one line: credits, license and "Back to top" side by side (wraps on narrow screens) */
-.gdoc-footer nav > div:first-child { display: flex; flex-wrap: wrap; align-items: center; column-gap: 1.5rem; flex: 1 1 auto; }
-.gdoc-footer nav > div:last-child { flex: 0 0 auto; }
+.wiki-footer__inner { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0; padding-block: 1rem; }
+.wiki-footer__item { display: inline-flex; align-items: center; gap: 0.25rem; line-height: 1.5; }
+.wiki-footer__item + .wiki-footer__item::before { content: "|"; color: var(--wiki-border); margin-inline: 0.75rem; }
+.wiki-footer__brand { color: var(--footer-font-color); font-weight: bold; text-decoration: none; }
+.wiki-footer__brand:hover { text-decoration: underline; }
+.wiki-footer__top-link { padding-block: 0.25rem; }
 
 /* Headings like MonoBook: black, ruled h1 and h2 */
 .gdoc-markdown h1, .gdoc-markdown h2, .gdoc-markdown h3, .gdoc-markdown h4 { color: inherit; }
@@ -102,16 +105,16 @@
 }
 .gdoc-toc hr { display: none; }
 
-/* Home page: the portal boxes are light blue with a blue border */
-.wiki-home table { background: none; border: 0; }
-.wiki-home table td {
-  background: var(--wiki-portal-bg);
-  border: 1px solid var(--wiki-portal-border);
-  padding: 0.2em 0.6em;
-  text-align: center;
-  vertical-align: top;
-  min-height: 10em;
-}
+/* Homepage navigation cards and community links */
+.wiki-home > p:first-of-type { font-size: 1.1rem; }
+.wiki-home__cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 1.25rem 0 2rem; }
+.wiki-home .wiki-home__card { display: flex; flex-direction: column; gap: 0.5rem; padding: 1rem; border: 1px solid var(--wiki-border); background: var(--wiki-soft); color: var(--body-font-color); text-decoration: none; }
+.wiki-home__card strong { color: var(--link-color); font-size: 1.05rem; }
+.wiki-home .wiki-home__card:hover { border-color: var(--link-color); text-decoration: none; }
+.wiki-home__card:hover strong, .wiki-home__card:focus-visible strong { text-decoration: underline; }
+.wiki-home__community { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 2rem; list-style: none; margin: 1.25rem 0; padding: 0; }
+.wiki-home__community li { display: flex; flex-direction: column; gap: 0.25rem; }
+.wiki-home__community li > a { font-weight: 600; }
 
 /* Shared by light and dark: status colors for table cells */
 :root {
@@ -189,6 +192,10 @@
 @media (max-width: 800px) {
   .gdoc-markdown .infobox,
   .gdoc-markdown .mw-halign-right { float: none; margin: 0 0 1rem; max-width: none; }
+}
+
+@media (max-width: 640px) {
+  .wiki-home__cards, .wiki-home__community { grid-template-columns: 1fr; }
 }
 
 /* "Edit this page" link at the end of a page */
