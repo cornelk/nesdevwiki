@@ -4,19 +4,19 @@ main:
     ref: "/"
     weight: 10
   - name: NES reference guide
-    ref: "/wiki/NES_reference_guide"
+    ref: "/wiki/N/NES_reference_guide"
     weight: 20
   - name: Programming guide
-    ref: "/wiki/Programming_guide"
+    ref: "/wiki/P/Programming_guide"
     weight: 30
   - name: Projects
-    ref: "/wiki/Projects"
+    ref: "/wiki/P/Projects"
     weight: 40
   - name: Emulators
-    ref: "/wiki/Emulators"
+    ref: "/wiki/E/Emulators"
     weight: 50
   - name: Tools
-    ref: "/wiki/Tools"
+    ref: "/wiki/T/Tools"
     weight: 60
   - name: All pages
     ref: "/wiki"

@@ -1,6 +1,6 @@
 {{ define "main" }}
   <article class="gdoc-markdown gdoc-markdown__align--left" id="main-content" tabindex="-1">
     <h1>{{ partial "utils/title" . }}</h1>
-    {{ partial "page-index.html" .Pages.ByTitle }}
+    {{ partial "page-index.html" .RegularPagesRecursive.ByTitle }}
   </article>
 {{ end }}

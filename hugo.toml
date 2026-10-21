@@ -42,3 +42,88 @@ geekdocPrivacyPolicy = "/wiki/Nesdev_wiki_Privacy_policy/"
 [params.geekdocContentLicense]
 name = "Public domain"
 link = "/wiki/Nesdev_wiki_General_disclaimer/"
+
+# Keep the published /wiki-images/<file> paths while grouping image sources by their first character.
+[module]
+[[module.mounts]]
+source = "static"
+target = "static"
+
+[[module.mounts]]
+source = "assets/wiki-images/0-9"
+target = "static/wiki-images"
+[[module.mounts]]
+source = "assets/wiki-images/A"
+target = "static/wiki-images"
+[[module.mounts]]
+source = "assets/wiki-images/B"
+target = "static/wiki-images"
+[[module.mounts]]
+source = "assets/wiki-images/C"
+target = "static/wiki-images"
+[[module.mounts]]
+source = "assets/wiki-images/D"
+target = "static/wiki-images"
+[[module.mounts]]
+source = "assets/wiki-images/E"
+target = "static/wiki-images"
+[[module.mounts]]
+source = "assets/wiki-images/F"
+target = "static/wiki-images"
+[[module.mounts]]
+source = "assets/wiki-images/G"
+target = "static/wiki-images"
+[[module.mounts]]
+source = "assets/wiki-images/H"
+target = "static/wiki-images"
+[[module.mounts]]
+source = "assets/wiki-images/I"
+target = "static/wiki-images"
+[[module.mounts]]
+source = "assets/wiki-images/J"
+target = "static/wiki-images"
+[[module.mounts]]
+source = "assets/wiki-images/K"
+target = "static/wiki-images"
+[[module.mounts]]
+source = "assets/wiki-images/L"
+target = "static/wiki-images"
+[[module.mounts]]
+source = "assets/wiki-images/M"
+target = "static/wiki-images"
+[[module.mounts]]
+source = "assets/wiki-images/N"
+target = "static/wiki-images"
+[[module.mounts]]
+source = "assets/wiki-images/O"
+target = "static/wiki-images"
+[[module.mounts]]
+source = "assets/wiki-images/P"
+target = "static/wiki-images"
+[[module.mounts]]
+source = "assets/wiki-images/Q"
+target = "static/wiki-images"
+[[module.mounts]]
+source = "assets/wiki-images/R"
+target = "static/wiki-images"
+[[module.mounts]]
+source = "assets/wiki-images/S"
+target = "static/wiki-images"
+[[module.mounts]]
+source = "assets/wiki-images/T"
+target = "static/wiki-images"
+[[module.mounts]]
+source = "assets/wiki-images/U"
+target = "static/wiki-images"
+[[module.mounts]]
+source = "assets/wiki-images/V"
+target = "static/wiki-images"
+[[module.mounts]]
+source = "assets/wiki-images/W"
+target = "static/wiki-images"
+[[module.mounts]]
+source = "assets/wiki-images/X"
+target = "static/wiki-images"
+[[module.mounts]]
+source = "assets/wiki-images/Y"
+target = "static/wiki-images"

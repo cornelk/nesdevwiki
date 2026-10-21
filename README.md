@@ -8,14 +8,14 @@ old wiki and is now plain Markdown in `content/`.
 
 | Path | Content |
 | --- | --- |
-| `content/wiki/` | Articles, one Markdown file per page. The front matter `url` keeps the old `/wiki/<name>/` address. |
+| `content/wiki/` | Articles grouped into letter and mapper-number folders, one Markdown file per page. Each page's front matter `url` keeps the old `/wiki/<name>/` address. |
 | `content/category/` | Category pages. Their member lists are generated from the `wikiCategories` of the articles. |
 | `content/_index.md`, `content/search.md` | Home page and search page. |
 | `layouts/`, `assets/css/wiki.css` | Wiki templates (category and A-Z listings, search) and the style. The colors are the ones of the old wiki's MonoBook skin, listed at the top of `wiki.css`. |
 | `data/menu/` | The sidebar menu of the theme. |
 | `static/brand.svg` | Logo, the green NesDev logo of the old wiki (`NESdev-logo-flat.svg` from the backup). |
 | `themes/hugo-geekdoc/` | [Geekdoc](https://github.com/thegeeklab/hugo-geekdoc) v4.1.4, vendored from its release tarball. |
-| `static/wiki-images/` | All images and files of the old wiki. |
+| `assets/wiki-images/` | Images and files of the old wiki, grouped by their first character and mounted at `/wiki-images/` to preserve their public paths. |
 | `static/_redirects` | Redirects of the old wiki's redirect pages, for Cloudflare Pages. |
 | `cmd/migratewiki/` | The one-time import of the backup, see below. |
 | `cmd/checklinks/` | Link and anchor checker for the built site. |
@@ -65,7 +65,7 @@ Cloudflare Pages builds the GitHub repository on every push.
 
 The backup (`202610-NesDevWiki.zip`, not committed) is a static XHTML export. `cmd/migratewiki` converted it with
 pandoc: it rewrote links and anchors, extracted categories, turned redirect pages into `static/_redirects`, copied
-the images, and dropped the Talk, User, File, Template and MediaWiki namespaces.
+the images into grouped source folders mounted at `/wiki-images/`, and dropped the Talk, User, File, Template and MediaWiki namespaces.
 
 The import was a one-time step and the result is edited by hand now. The command refuses to run when
 `content/wiki` exists, to protect those edits. To repeat it in a fresh checkout:
@@ -81,5 +81,5 @@ changed URLs) are listed in [docs/migration-issues.md](docs/migration-issues.md)
 ## License
 
 The wiki declares its content public domain, see the
-[general disclaimer](content/wiki/Nesdev_wiki_General_disclaimer.md). The Geekdoc theme is MIT licensed
+[general disclaimer](content/wiki/N/Nesdev_wiki_General_disclaimer.md). The Geekdoc theme is MIT licensed
 (`themes/hugo-geekdoc/LICENSE`, its icons have their own licenses, see its README).

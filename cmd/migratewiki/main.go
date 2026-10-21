@@ -1,12 +1,12 @@
 // Command migratewiki converts an XHTML export of the NESdev wiki into Hugo content.
 //
 // Pages of the main, Help, Category and selected project namespaces become Markdown files below
-// content/. Redirect stubs become Cloudflare Pages redirects, images are copied to static/wiki-images.
+// content/. Redirect stubs become Cloudflare Pages redirects. Images are grouped below assets/.
 // Talk, User, File, Template and MediaWiki pages are not migrated.
 //
 // This was a one-time import: afterwards the generated Markdown is the source of truth and is edited
 // directly. To protect those edits the command refuses to run when the target already holds content.
-// Delete content/wiki, content/category, content/_index.md and static/wiki-images to import again.
+// Delete content/wiki, content/category, content/_index.md and assets/wiki-images to import again.
 //
 // Usage:
 //
@@ -27,6 +27,7 @@ import (
 	"regexp"
 	"runtime"
 	"sort"
+	"strconv"
 	"strings"
 	"sync"
 )
@@ -48,7 +49,7 @@ func main() {
 }
 
 func run(logger *slog.Logger, src, out string) error {
-	for _, generated := range []string{"content/wiki", "content/category", "content/_index.md", "static/wiki-images"} {
+	for _, generated := range []string{"content/wiki", "content/category", "content/_index.md", "assets/wiki-images"} {
 		path := filepath.Join(out, filepath.FromSlash(generated))
 		if _, err := os.Stat(path); err == nil {
 			return fmt.Errorf("%s already exists, refusing to overwrite imported content", path)
@@ -70,7 +71,7 @@ func run(logger *slog.Logger, src, out string) error {
 	if err := s.writeRedirects(out); err != nil {
 		return err
 	}
-	if err := copyImages(filepath.Join(src, "wiki-images"), filepath.Join(out, "static", "wiki-images")); err != nil {
+	if err := copyImages(filepath.Join(src, "wiki-images"), filepath.Join(out, "assets", "wiki-images")); err != nil {
 		return err
 	}
 
@@ -241,7 +242,41 @@ func contentPath(p *page) (string, string) {
 	case p.Kind == kindCategory:
 		return "category", p.File + ".md"
 	default:
-		return "wiki", p.File + ".md"
+		return filepath.Join("wiki", wikiBucket(p.File)), p.File + ".md"
+	}
+}
+
+func wikiBucket(name string) string {
+	name = strings.TrimLeft(name, "_")
+	for _, prefix := range []string{"NES_2_0_Mapper_", "INES_Mapper_"} {
+		suffix := strings.TrimPrefix(name, prefix)
+		if suffix == name {
+			continue
+		}
+		number, err := strconv.Atoi(suffix)
+		if err != nil {
+			continue
+		}
+		start := number / 100 * 100
+		return filepath.Join(prefix[:len(prefix)-1], fmt.Sprintf("%03d-%03d", start, start+99))
+	}
+	return sourceBucket(name)
+}
+
+func sourceBucket(name string) string {
+	if name == "" {
+		return "Other"
+	}
+	first := name[0]
+	switch {
+	case first >= '0' && first <= '9':
+		return "0-9"
+	case first >= 'a' && first <= 'z':
+		return string(first - ('a' - 'A'))
+	case first >= 'A' && first <= 'Z':
+		return string(first)
+	default:
+		return "Other"
 	}
 }
 
@@ -402,7 +437,11 @@ func copyImages(src, dst string) error {
 		if e.IsDir() {
 			continue
 		}
-		if err := copyFile(filepath.Join(src, e.Name()), filepath.Join(dst, e.Name())); err != nil {
+		imageDir := filepath.Join(dst, sourceBucket(e.Name()))
+		if err := os.MkdirAll(imageDir, 0o755); err != nil {
+			return err
+		}
+		if err := copyFile(filepath.Join(src, e.Name()), filepath.Join(imageDir, e.Name())); err != nil {
 			return err
 		}
 	}
